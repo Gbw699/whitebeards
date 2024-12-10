@@ -2,147 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { DataRepositoryService } from '../services/data-repository.service';
-import { IUser } from '../user.model';
-
-@Component({
-  styles: [
-    `
-      form {
-        color: #336699;
-        font-size: 24px;
-        padding: 30px;
-        width: 310px;
-        margin: 0 auto;
-      }
-      input {
-        display: block;
-        font-size: 24px;
-        padding: 10px;
-        width: 275px;
-      }
-      button {
-        font-size: 26px;
-        padding: 8px;
-        color: #556b8e;
-        margin-left: 10px;
-      }
-      button:disabled {
-        color: #999999;
-      }
-      .header {
-        color: #336699;
-        text-align: center;
-        padding-top: 20px;
-        margin-top: 0;
-      }
-      .form-group {
-        margin: 10px;
-      }
-      .buttons {
-        text-align: right;
-        margin-right: 0px;
-      }
-      .save {
-        background-color: #ccddff;
-        border-color: #ccddff;
-      }
-      em {
-        float: right;
-        color: #e05c65;
-        padding-left: 10px;
-      }
-      .error input,
-      .error select,
-      .error textarea {
-        background-color: #e3c3c5;
-      }
-      .error ::-webkit-input-placeholder {
-        color: #999;
-      }
-      .error :-moz-placeholder {
-        color: #999;
-      }
-      .error ::-moz-placeholder {
-        color: #999;
-      }
-      .error :ms-input-placeholder {
-        color: #999;
-      }
-    `,
-  ],
-  template: `
-    <div>
-      <h2 class="header">Sign In</h2>
-      <form
-        #signInForm="ngForm"
-        (ngSubmit)="signIn(signInForm.value)"
-        autocomplete="off"
-        novalidate
-      >
-        <div
-          class="form-group"
-          [ngClass]="{ error: email.invalid && email.dirty }"
-        >
-          <label for="email">Email:</label>
-          <em *ngIf="email.invalid && email.dirty">Required</em>
-          <input
-            [(ngModel)]="credentials.email"
-            #email="ngModel"
-            required
-            name="email"
-            id="email"
-            type="text"
-            placeholder="Email..."
-          />
-        </div>
-        <div
-          class="form-group"
-          [ngClass]="{ error: password.invalid && password.dirty }"
-        >
-          <label for="password">Password:</label>
-          <em *ngIf="password.invalid && password.dirty">Required</em>
-          <input
-            [(ngModel)]="credentials.password"
-            #password="ngModel"
-            required
-            name="password"
-            id="password"
-            type="password"
-            placeholder="Password..."
-          />
-        </div>
-        <div class="form-group buttons">
-          <button type="button" (click)="cancel()">Cancel</button>
-          <button class="save" type="submit" [disabled]="signInForm.invalid">
-            Sign In
-          </button>
-        </div>
-      </form>
-    </div>
-  `,
-})
-export class SignInComponent {
-  credentials: any = {};
-
-  constructor(
-    private router: Router,
-    private dataRepository: DataRepositoryService
-  ) {}
-
-  signIn(credentials: any) {
-    this.dataRepository.signIn(credentials).subscribe({
-      error: (err) => {
-        console.error(err, 'Error');
-      },
-      complete: () => this.router.navigate(['/catalog']),
-    });
-  }
-
-  cancel() {
-    this.router.navigate(['/']);
-  }
-}
+import { UserRepositoryService } from '../services/user-repository.service';
+import { IUser } from './user.model';
 
 @Component({
   styleUrls: ['./register.component.css'],
@@ -158,7 +19,7 @@ export class RegisterComponent {
 
   constructor(
     private router: Router,
-    private dataRepository: DataRepositoryService
+    private userRepository: UserRepositoryService
   ) {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
@@ -175,7 +36,7 @@ export class RegisterComponent {
 
   registerUser(user: IUser) {
     this.saving = true;
-    this.dataRepository.saveUser(user).subscribe({
+    this.userRepository.saveUser(user).subscribe({
       error: () => (this.saving = false),
       complete: () => this.router.navigate(['/catalog']),
     });
