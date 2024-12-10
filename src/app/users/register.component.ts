@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { DataRepositoryService } from '../services/data-repository';
-import { IUser } from '../services/user.model';
+import { DataRepositoryService } from '../services/data-repository.service';
+import { IUser } from '../user.model';
 
 @Component({
   styles: [
@@ -145,8 +145,8 @@ export class SignInComponent {
 }
 
 @Component({
-  styleUrls: ['../styles/register.component.css'],
-  templateUrl: '../templates/register.component.html',
+  styleUrls: ['./register.component.css'],
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent {
   registerForm: FormGroup;

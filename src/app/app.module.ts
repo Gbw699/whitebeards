@@ -3,14 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/app.component';
-import { NavBarComponent } from './components/nav-bar.component';
-import { CatalogComponent } from './components/catalog.component';
-import { RegisterComponent } from './components/register.component';
-import { SignInComponent } from './components/register.component';
+import { AppComponent } from './app.component';
+import { NavBarComponent } from './nav-bar.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { RegisterComponent } from './users/register.component';
+import { SignInComponent } from './users/register.component';
 import { LoadingComponent } from './components/loading-spinner.component';
-import { DataRepositoryService } from './services/data-repository';
-import { AccountMenuComponent } from './components/account-menu.component';
+import { DataRepositoryService } from './services/data-repository.service';
+import { AccountMenuComponent } from './account-menu.component';
 
 @NgModule({
   declarations: [
