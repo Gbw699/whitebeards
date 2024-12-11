@@ -2,22 +2,24 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  styles: [`
+  styles: [
+    `
       .app {
         width: 1600px;
         margin: auto;
       }
       .main {
-        background-color:white;      
+        background-color: white;
       }
-    `],
-  template: `
-      <div class="app">
-        <nav-bar></nav-bar>
-        <div class="main">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
     `,
+  ],
+  template: `
+    <div class="app">
+      <wb-nav-bar></wb-nav-bar>
+      <div class="main">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  `,
 })
-export class AppComponent { }
+export class AppComponent {}
