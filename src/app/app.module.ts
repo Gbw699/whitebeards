@@ -6,7 +6,6 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CatalogModule } from './catalog/catalog.module';
-import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +14,6 @@ import { UsersModule } from './users/users.module';
     BrowserModule,
     SharedModule,
     CatalogModule,
-    UsersModule,
     AppRoutingModule,
   ],
   providers: [],
