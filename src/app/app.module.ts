@@ -1,32 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { RegisterComponent } from './users/register.component';
-import { SignInComponent } from './users/sign-in.component';
-import { CatalogRepositoryService } from './catalog/catalog-repository.service';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { CatalogModule } from './catalog/catalog.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CatalogComponent,
-    RegisterComponent,
-    SignInComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     CoreModule,
     BrowserModule,
     SharedModule,
+    CatalogModule,
+    UsersModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
   ],
-  providers: [CatalogRepositoryService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
